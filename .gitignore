@@ -3,6 +3,8 @@
 # personal and admin folder
 ignore/
 admin/
+.env
+.env*.local
 
 # dependencies
 /node_modules
