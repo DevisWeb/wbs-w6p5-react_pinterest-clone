@@ -1,70 +1,109 @@
-# Getting Started with Create React App
+# Fetch data - Create a [Pinterest](https://www.pinterest.com/) Clone with React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+WBS Coding School - Team-Project 5 (week 6)
 
-## Available Scripts
+> Main goals while working with git and github in a remote team:
+>
+> **Routing, Fetch and Filter data**
+>
+> > Prerequisites: React, ES6, OOP, HTML5, CSS3
+>
+> Time to accomplish: 2 weeks (2h+/day) | Team-Size: 4
 
-In the project directory, you can run:
+---
 
-### `npm start`
+### Table of Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Project Overview](#project-overview)
+- [Requirements & Installation](#requirements-&-installation)
+- [Resources](#resources)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+# Project Overview
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Instructor-Guidance for developing-process
 
-### `npm run build`
+- **Preparation**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - Contentful content types for user, post created
+  - 4 users created, 20 posts created (entries)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Objectives left**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  - Create a react app that uses that data on different routes
 
-### `npm run eject`
+- **Steps required**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  - Initiate the react project
+  - Link the project to github, set up collaborators
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Further steps**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  - install and import react-router-dom in App.js
+  - Define 2 main routes (you can create more if you want to enhance your app) one route for allposts, the second for the best rated posts
+  - Create two view components, one will be responsible to display on /allposts the other on /bestratedposts
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    - **allposts view**
 
-## Learn More
+      - fetch all posts entries (axios) and display them in a card like component. The user referenced in the post must be displayed in the card (firstname lastname for example)
+      - create an input field, a submit button
+      - on submit, fetch only the entries where the title contains the input text, [Contentful - Full text search on a field](https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/search-parameters/full-text-search-on-a-field/query-entries/console)
+      - update the state with the newly fetched entries
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    - **best rated view**
+      - fetch all entries where the grade is of 4 or more, order the entries by grade, [Contentful - Search Parameters](https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/search-parameters/order)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Demo
 
-### Code Splitting
+For DEMO, go to: link will be added soon
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+### Technologies & Tools
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+| Technologies / Tools | Used | Notes |
+| :------------------- | :--- | :---- |
+|                      |      |       |
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Requirements & Installation
 
-### Advanced Configuration
+This project requires [Node.js](https://nodejs.org/en/) v14.x.x to be installed on your machine.
+To check your actual version, run:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+$ node --version
+```
 
-### Deployment
+### Installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+If you want to clone this repository, run:
 
-### `npm run build` fails to minify
+```bash
+$ git clone https://github.com/DevisWeb/wbs-w6p5-react_pinterest-clone.git
+$ cd wbs-w6p5-react_pinterest-clone
+$ npm install
+$ npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Resources
+
+Resources from instructor of wbs:
+
+- Guidance for developing the project, see above
+- [Contentful.com - API Doc - content-delivery-API](https://www.contentful.com/developers/docs/references/content-delivery-api/)
+- [Contentful.com - Full text search on a field > Filter entry by text](https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/search-parameters/full-text-search-on-a-field)
+
+### Further resources:
+
+**Contentful - CMS**
+[Contentful - Overview](https://www.contentful.com/help/contentful-overview/)
+[Contentful Delivery API](https://www.contentful.com/developers/docs/references/content-delivery-api/)
+[Contentful - Filter entry by text](https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/search-parameters/full-text-search-on-a-field)
+[Contentful - Filter entry by text - Console](https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/search-parameters/full-text-search-on-a-field/query-entries/console)
+[Contentful - Get all entries of a space - Console](https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/entries/entries-collection/get-all-entries-of-a-space/console)
+
+**Environment Variables**
+[Create-react-app - Environment Variables](https://create-react-app.dev/docs/adding-custom-environment-variables/)
