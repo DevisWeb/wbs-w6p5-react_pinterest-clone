@@ -14,6 +14,7 @@ function SearchBar() {
 
           value ? history.push('search=' + value) : history.push('/')
         }}
+        onReset={() => setValue("")}
       >
         <input
           placeholder="i am searching for"
@@ -21,7 +22,12 @@ function SearchBar() {
           value={value}
           onChange={(ev) => setValue(ev.target.value)}
         ></input>
-        <button className="searchbar-button" type="submit">
+        {value ? (
+          <button className="searchbar-reset" type="reset">
+            reset
+          </button>
+        ) : null}
+        <button className="searchbar-search" type="submit">
           Search
         </button>
       </form>
