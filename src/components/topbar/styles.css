@@ -9,7 +9,8 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 .topbar + * {
-    margin-top:4em;
+    position: relative;
+    top:4em;
 }
 .topbar-content {
     height: 100%;
