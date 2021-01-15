@@ -15,26 +15,26 @@ function App() {
     <div className="App">
       <TopBar />
       <div className="container">
-          <Switch>
-            <Route path="/users/:id">
-              <ViewUser />
-            </Route>
-            <Route path="/posts/:id">
-              <ViewPost />
-            </Route>
-            <Route path="/best_rated">
-              <ViewPostsBestRated />
-            </Route>
-            <Route path="/:search">
-              <ViewPostsAll />
-            </Route>
-            <Route path="/">
-              <ViewPostsAll />
-            </Route>
-          </Switch>
+        <Switch>
+          <Route path="/users/:id">
+            <ViewUser />
+          </Route>
+          <Route path="/posts/:id">
+            <ViewPost />
+          </Route>
+          <Route path="/best_rated">
+            <ViewPostsBestRated />
+          </Route>
+          <Route path="/search=:search">
+            <ViewPostsAll />
+          </Route>
+          <Route path="/">
+            <ViewPostsAll />
+          </Route>
+        </Switch>
       </div>
     </div>
-  )
+  );
 }
 
 export default App;
