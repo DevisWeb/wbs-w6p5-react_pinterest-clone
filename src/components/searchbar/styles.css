@@ -3,6 +3,7 @@
     background: unset;
     border: unset;
     flex-grow: 1;
+    outline: none;
 }
 .searchbar-search {
     border-top-right-radius: inherit;
