@@ -9,7 +9,7 @@ export default function ViewPost() {
   useEffect(() => {
     axios
       .get(
-        "https://cdn.contentful.com/spaces/wwsh9kp1nfrc/environments/master/entries?access_token=6JzF_q1CD1Htat5n-3DjPBwGuw5B1lbevCKfiqogqX4&content_type=post&sys.id=" +
+        "https://cdn.contentful.com/spaces/wwsh9kp1nfrc/environments/master/entries?access_token={token}&content_type=post&sys.id=" +
           id
       )
       .then((response) => {
