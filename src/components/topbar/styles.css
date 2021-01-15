@@ -1,0 +1,38 @@
+.topbar {
+    position: fixed;
+    top:0;
+    z-index: 10;
+    width: 100%;
+    height: 4em;
+    padding: 1em 0 0.5em 0;
+    background-color: white;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+.topbar + * {
+    margin-top:4em;
+}
+.topbar-content {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.topbar-content > * {
+    height: 100%;
+    margin-right: 0.8em;
+}
+.topbar-content > *:last-child {
+    margin-right: 0;
+}
+.topbar-content .link {
+    flex-shrink: 0;
+    border: 1px solid black;
+    border-radius: 2em;
+    padding: 0 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.topbar .active {
+    background-color: grey;
+}
