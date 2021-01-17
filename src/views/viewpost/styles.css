@@ -1,0 +1,15 @@
+.view-post {
+    margin: 2em 0;
+    border: 1px solid black;
+    overflow: hidden;
+    border-radius: 1em;
+    display: flex;
+}
+.view-post-content {
+    padding: 3em;
+    overflow: hidden;
+}
+.view-post hr {
+    border:unset;
+    border-top: 1px solid black;
+}

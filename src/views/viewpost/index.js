@@ -50,5 +50,21 @@ export default function ViewPost() {
       });
   }, []);
   
-  return <div>{JSON.stringify(post)}</div>;
+  return (
+    <div className="view-post">
+      {postData.isLoading? <>loading...</> : !postData.data ? <>nothing here</> : (
+        <>
+          <img className="view-post-image" src={postData.data.imageLink}></img>
+          <div className="view-post-content">
+            <h2>{postData.data.title}</h2>
+            <p>{postData.data.description}</p>
+            <hr></hr>
+            {userData.isLoading ? <>loading...</> : (
+              <UserLink user={userData.data}/>
+            )}          
+          </div>
+        </>
+      )}
+    </div>
+  );
 }
