@@ -10,7 +10,7 @@ export default function ViewPost() {
   const [userData, setUserData] = useState({isLoading: true, data: null});
 
   //request a post from server and then execute the callback with it as argument
-  const getPostById = (id, onSuccess, onError) => {
+  const requestPostById = (id, onSuccess, onError) => {
     axios
       .get(
         `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=post&sys.id=${id}`
@@ -23,7 +23,7 @@ export default function ViewPost() {
   };
 
   //request a user from server and then execute the callback with it as argument
-  const getUserById = (id, onSuccess, onError) => {
+  const requestUserById = (id, onSuccess, onError) => {
     axios
       .get(
         `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=user&sys.id=${id}`
@@ -35,22 +35,30 @@ export default function ViewPost() {
       .catch(onError);
   };
 
-  //request the post, then request user afterwards
+  //request the post
   useEffect(() => {
     setPostData({isLoading: true, data: null});
-    getPostById(
+    requestPostById(
       id, 
       (post) => {
-        setPostData({isLoading: false, data: post});
-        setUserData({isLoading: true, data: null});
-        getUserById(post.user.sys.id, (user) => {
-          setUserData({isLoading: false, data: user});
-        });
+        setPostData({ isLoading: false, data: post });
       },
       () => {
         setPostData({isLoading: false, data: null})
       });
   }, []);
+
+  //if the post state recieved data, request the user
+  useEffect(() => {
+    if (postData.data) {
+      setUserData({ isLoading: true, data: null });
+      requestUserById(
+        postData.data.user.sys.id,
+        (user) => setUserData({ isLoading: false, data: user }),
+        () => setUserData({ isLoading: false, data: null })
+      );
+    }
+  }, [postData.data]);
 
   return (
     <div className="view-post">
