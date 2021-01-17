@@ -4,19 +4,49 @@ import axios from "axios";
 
 export default function ViewPost() {
   const { id } = useParams();
-  const [post, setPost] = useState(null);
+  const [postData, setPostData] = useState({isLoading: true, data: null});
+  const [userData, setUserData] = useState({isLoading: true, data: null});
 
-  useEffect(() => {
+  //request a post from server and then execute the callback with it as argument
+  const getPostById = (id, onSuccess, onError) => {
     axios
       .get(
-        "https://cdn.contentful.com/spaces/wwsh9kp1nfrc/environments/master/entries?access_token={token}&content_type=post&sys.id=" +
-          id
+        `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=post&sys.id=${id}`
       )
       .then((response) => {
-        setPost(response.data.items[0].fields);
+        console.log(response);
+        onSuccess(response.data.items[0].fields);
       })
-      .catch((e) => {
-        console.error(e);
+      .catch(onError);
+  };
+
+  //request a user from server and then execute the callback with it as argument
+  const getUserById = (id, onSuccess, onError) => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=user&sys.id=${id}`
+      )
+      .then((response) => {
+        onSuccess(response.data.items[0].fields);
+
+      })
+      .catch(onError);
+  };
+
+  //request the post, then request user afterwards
+  useEffect(() => {
+    setPostData({isLoading: true, data: null});
+    getPostById(
+      id, 
+      (post) => {
+        setPostData({isLoading: false, data: post});
+        setUserData({isLoading: true, data: null});
+        getUserById(post.user.sys.id, (user) => {
+          setUserData({isLoading: false, data: user});
+        });
+      },
+      () => {
+        setPostData({isLoading: false, data: null})
       });
   }, []);
   
