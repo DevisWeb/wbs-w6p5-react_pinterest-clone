@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import UserLink from "../../components/userlink"
 import axios from "axios";
+import "./styles.css"
 
 export default function ViewPost() {
   const { id } = useParams();
@@ -49,7 +51,7 @@ export default function ViewPost() {
         setPostData({isLoading: false, data: null})
       });
   }, []);
-  
+
   return (
     <div className="view-post">
       {postData.isLoading? <>loading...</> : !postData.data ? <>nothing here</> : (
