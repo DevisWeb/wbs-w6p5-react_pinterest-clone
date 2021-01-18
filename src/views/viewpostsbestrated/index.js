@@ -10,7 +10,9 @@ export default function ViewPostsBestRated() {
 
   useEffect(() => {
     axios
-      .get(`${query}=5`)
+      .get(
+        `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=post&fields.rating=5`
+      )
       .then((data) => {
         //console.log(data.data.items[0].fields.user.sys.id);
         setRating(data.data.items);
