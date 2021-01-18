@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import UserLink from "../../components/userlink"
+import UserLink from "../../components/userlink";
 import axios from "axios";
-import "./styles.css"
+import "./styles.css";
 
 export default function ViewPost() {
   const { id } = useParams();
-  const [postData, setPostData] = useState({isLoading: true, data: null});
-  const [userData, setUserData] = useState({isLoading: true, data: null});
+  const [postData, setPostData] = useState({ isLoading: true, data: null });
+  const [userData, setUserData] = useState({ isLoading: true, data: null });
 
   //request a post from server and then execute the callback with it as argument
   const requestPostById = (id, onSuccess, onError) => {
@@ -30,22 +30,22 @@ export default function ViewPost() {
       )
       .then((response) => {
         onSuccess(response.data.items[0].fields);
-
       })
       .catch(onError);
   };
 
   //request the post
   useEffect(() => {
-    setPostData({isLoading: true, data: null});
+    setPostData({ isLoading: true, data: null });
     requestPostById(
-      id, 
+      id,
       (post) => {
         setPostData({ isLoading: false, data: post });
       },
       () => {
-        setPostData({isLoading: false, data: null})
-      });
+        setPostData({ isLoading: false, data: null });
+      }
+    );
   }, []);
 
   //if the post state recieved data, request the user
@@ -62,16 +62,22 @@ export default function ViewPost() {
 
   return (
     <div className="view-post">
-      {postData.isLoading? <>loading...</> : !postData.data ? <>nothing here</> : (
+      {postData.isLoading ? (
+        <>loading...</>
+      ) : !postData.data ? (
+        <>nothing here</>
+      ) : (
         <>
           <img className="view-post-image" src={postData.data.imageLink}></img>
           <div className="view-post-content">
             <h2>{postData.data.title}</h2>
             <p>{postData.data.description}</p>
             <hr></hr>
-            {userData.isLoading ? <>loading...</> : (
-              <UserLink user={userData.data}/>
-            )}          
+            {userData.isLoading ? (
+              <>loading...</>
+            ) : (
+              <UserLink user={userData.data} />
+            )}
           </div>
         </>
       )}
