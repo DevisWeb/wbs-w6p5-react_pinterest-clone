@@ -1,0 +1,20 @@
+.post-grid-stack {
+  margin-top: 2em;
+}
+
+.post-grid-masonry {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: -30px;
+  width: auto;
+}
+.post-grid-column {
+  padding-left: 1.5em;
+  background-clip: padding-box;
+}
+
+.post-grid-column > div {
+  margin-bottom: 1.5em;
+  max-height: 600px;
+}
