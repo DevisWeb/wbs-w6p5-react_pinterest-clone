@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function ViewPostsAll() {
@@ -25,6 +25,10 @@ export default function ViewPostsAll() {
       })
       .catch((error) => console.error(error));
   };
+
+  useEffect(() => {
+    callApi(findEndpoint());
+  }, [search]);
 
   return <div>I am a ViewPostsAll</div>;
 }
