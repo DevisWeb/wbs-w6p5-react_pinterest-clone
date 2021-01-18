@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function PostCard({ post }) {
   const url = post.fields.imageLink;
   const title = post.fields.title;
@@ -5,9 +7,11 @@ export default function PostCard({ post }) {
 
   return (
     <div>
-      <img src={url} alt={title} />
-      <p>{title}</p>
-      <Rating rating={rating} />
+      <Link to={`/posts/${post.sys.id}`}>
+        <img src={url} alt={title} />
+        <p>{title}</p>
+        <Rating rating={rating} />
+      </Link>
     </div>
   );
 }
