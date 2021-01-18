@@ -1,0 +1,18 @@
+.user-link {
+  background-color: whitesmoke;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+.img-user-link {
+  width: 5vw;
+  height: auto;
+  align-self: center;
+  border: 1px solid gray;
+  border-radius: 50%;
+  margin: 5px;
+}
