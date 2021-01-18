@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import PostGrid from "../../components/postgrid/";
+
 export default function ViewPostsAll() {
   const [postsAll, setPostsAll] = useState([]);
   let { search } = useParams();
@@ -30,5 +32,9 @@ export default function ViewPostsAll() {
     callApi(findEndpoint());
   }, [search]);
 
-  return <div>I am a ViewPostsAll</div>;
+  return (
+    <div>
+      <PostGrid postsAll={postsAll} />
+    </div>
+  );
 }
