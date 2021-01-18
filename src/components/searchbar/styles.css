@@ -1,9 +1,11 @@
+.searchbar * {
+    outline:none;
+}
 .searchbar-input {
     padding: 0;
     background: unset;
     border: unset;
     flex-grow: 1;
-    outline: none;
 }
 .searchbar-search {
     border-top-right-radius: inherit;
