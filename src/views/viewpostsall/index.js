@@ -9,5 +9,9 @@ export default function ViewPostsAll() {
   }?access_token=${process.env.REACT_APP_API_KEY}&content_type=post&query=${
     search?.split("=")[1]
   }`;
+
+  const findEndpoint = () => {
+    return search === "posts" ? urlFetchAllPosts : urlFetchSearchResults;
+  };
   return <div>I am a ViewPostsAll</div>;
 }
