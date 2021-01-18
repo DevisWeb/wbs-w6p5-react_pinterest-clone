@@ -1,3 +1,4 @@
-export default function Rating() {
-    return <div>I am a Rating</div>
+// import "./style.css";
+export default function Rating({ rating }) {
+  return <div>{rating}</div>;
 }
