@@ -23,7 +23,6 @@ export default function ViewPostsAll() {
   };
 
   const callApi = (endpoint) => {
-    console.log(endpoint);
     axios
       .get(endpoint)
       .then((response) => {
