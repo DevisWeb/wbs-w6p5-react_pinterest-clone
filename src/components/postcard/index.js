@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Rating from "../rating";
 
 export default function PostCard({ post }) {
   const url = post.fields.imageLink;
