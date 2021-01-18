@@ -19,10 +19,11 @@ export default function ViewPostsAll() {
   }`;
 
   const findEndpoint = () => {
-    return search === "posts" ? urlFetchAllPosts : urlFetchSearchResults;
+    return search === undefined ? urlFetchAllPosts : urlFetchSearchResults;
   };
 
   const callApi = (endpoint) => {
+    console.log(endpoint);
     axios
       .get(endpoint)
       .then((response) => {
