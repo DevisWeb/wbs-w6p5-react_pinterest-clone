@@ -1,9 +1,7 @@
 import "./styles.css";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function UserLink({ user }) {
-  useEffect(() => console.log(user));
   return (
     <div>
       <Link to={`/users/${user.name}`}>
