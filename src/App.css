@@ -1,11 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500&display=swap');
+
 * {
   box-sizing: border-box;
+}
+:root {
+  --background: white;
+  --accent1: #2E2E2D;
+  --accent2: #ebebeb;
+  --font-display: 'DM Serif Display', serif;
+  --font-text: 'Work Sans', sans-serif;
+}
+html {
+  overflow-y: scroll;
+}
+body {
+  color: var(--accent1);
+  font-family: var(--font-text);
 }
 .container {
   width: 80vw;
   margin-left:auto;
   margin-right: auto;
 }
+.container * {
+  transition: ease-in-out 0.1s;
+}
+
 a {
   text-decoration:none;
   color: inherit;
