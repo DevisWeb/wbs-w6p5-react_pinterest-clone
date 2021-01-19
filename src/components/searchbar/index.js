@@ -1,18 +1,18 @@
-import { useState } from 'react'
-import { Link, useHistory, withRouter } from 'react-router-dom'
-import './styles.css'
+import { useState } from "react";
+import { Link, useHistory, withRouter } from "react-router-dom";
+import "./styles.css";
 
 function SearchBar() {
-  const [value, setValue] = useState('')
-  const history = useHistory()
+  const [value, setValue] = useState("");
+  const history = useHistory();
   return (
     <div className="searchbar">
       <form
         className="searchbar-form"
         onSubmit={(ev) => {
-          ev.preventDefault()
+          ev.preventDefault();
 
-          value ? history.push('search=' + value) : history.push('/')
+          value ? history.push("/search=" + value) : history.push("/");
         }}
         onReset={() => setValue("")}
       >
@@ -32,7 +32,7 @@ function SearchBar() {
         </button>
       </form>
     </div>
-  )
+  );
 }
 
-export default withRouter(SearchBar)
+export default SearchBar;
