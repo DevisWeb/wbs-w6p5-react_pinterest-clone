@@ -1,0 +1,18 @@
+/* general */
+.flex {
+  display: flex;
+}
+
+/* rating container and star icon  */
+.star-w-h {
+  width: 1.5em;
+  height: auto;
+}
+
+.rating-container {
+  width: 150px;
+  padding: 5px 5px 2px;
+  margin: 10px 0px 20px;
+  align-items: center;
+  justify-content: space-between;
+}
