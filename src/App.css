@@ -12,6 +12,9 @@
   --font-display: 'DM Serif Display', serif;
   --font-text: 'Work Sans', sans-serif;
 }
+html {
+  overflow-y: scroll;
+}
 body {
   color: var(--accent1);
   font-family: var(--font-text);
