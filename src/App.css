@@ -1,5 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500&display=swap');
+
 * {
   box-sizing: border-box;
+  transition: ease-in-out 0.1s;
+}
+:root {
+  --background: white;
+  --accent1: #2E2E2D;
+  --accent2: #ebebeb;
+  --font-display: 'DM Serif Display', serif;
+  --font-text: 'Work Sans', sans-serif;
+}
+body {
+  color: var(--accent1);
+  font-family: var(--font-text);
 }
 .container {
   width: 80vw;
