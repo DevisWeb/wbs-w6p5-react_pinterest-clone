@@ -7,7 +7,12 @@
     padding: 1em 0 0.5em 0;
     background-color: var(--background);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    transition: ease-in-out 0.1s;
 }
+.topbar * {
+    transition: ease-in-out 0.1s;
+}
+
 .topbar + * {
     position: relative;
     top:4em;
@@ -38,6 +43,7 @@
 .logo {
     display: block;
     margin-right: 2em;
+    transition: none;
 }
 .logo > *{
     display: block;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
