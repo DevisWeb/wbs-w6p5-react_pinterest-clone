@@ -1,0 +1,24 @@
+.post-card-container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.post-card-container:hover > a > div {
+  opacity: 1;
+}
+
+.post-card-text {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  opacity: 0;
+}
+
+.post-card-image {
+  width: 19.5vw;
+  max-height: 400px;
+  min-width: 150px;
+  border-radius: 5px;
+  object-fit: cover;
+}
