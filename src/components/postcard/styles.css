@@ -39,6 +39,10 @@
   font-weight: bold;
 }
 
+.post-card-text p {
+  margin-left: 7px;
+}
+
 .post-card-image {
   width: 19.5vw;
   max-height: 400px;

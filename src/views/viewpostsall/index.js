@@ -2,6 +2,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Pluralize from "pluralize";
 
 //Import components
 import PostGrid from "../../components/postgrid/";
@@ -32,8 +33,18 @@ export default function ViewPostsAll() {
     callApi(findEndpoint());
   }, [search]);
 
+  const countPosts = (keyword) => {
+    if (postsAll.length === 0) {
+      return `No results for ${keyword}`;
+    } else if (keyword !== undefined) {
+      return `${Pluralize("result", postsAll.length, true)} for ${keyword}`;
+    }
+  };
   return (
     <div>
+      <h3 style={{ marginBlockEnd: "-1em", marginBlockStart: "2.5em" }}>
+        {countPosts(search)}
+      </h3>
       <PostGrid postsAll={postsAll} />
     </div>
   );
