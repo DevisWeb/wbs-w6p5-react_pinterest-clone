@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import UserLink from "../../components/userlink";
+import Rating from "../../components/rating";
 import axios from "axios";
 import "./styles.css";
 
@@ -72,6 +73,7 @@ export default function ViewPost() {
           <div className="view-post-content">
             <h2>{postData.data.title}</h2>
             <p>{postData.data.description}</p>
+            <Rating rating={postData.data.rating}></Rating>
             <hr></hr>
             {userData.isLoading ? (
               <>loading...</>
