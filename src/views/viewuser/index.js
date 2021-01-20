@@ -4,6 +4,7 @@ import axios from "axios";
 import PostGrid from "../../components/postgrid";
 import "./styles.css";
 import Pluralize from "pluralize";
+import ApiHelpers from "../../api";
 
 export default function ViewUser() {
   // name the username that will be passed as a prop. Set by default on "Pikachu" for testing
@@ -16,25 +17,25 @@ export default function ViewUser() {
   // userPosts will be set to an array with all the posts of the specific user. Will be set in the second axios request.
   const [userPosts, setUserPosts] = useState([]);
 
-  const getUsersPosts = () => {
-    axios
-      .get(
-        // besides the general API keys the content_type user is required with the value of the state variable name to find the unique user.
-        `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=user&fields.name=${name}`
-      )
-      .then((res) => {
-        //the response is the unique user. Check it in the console.
-        console.log(res);
-        console.log(res.data.items[0].fields.name);
-        // here the unique avatar-url of the user will be set. Will be reused in the view to show the users Profile pic.
-        setAvatar(res.data.items[0].fields.avatarLink);
-        // here the unique userId is set which will be reused to find his specific posts
-        setUserId(res.data.items[0].sys.id);
-        //Although the variable avatar can be displayed in the HTML, here it is still not reset. What is the reason?
-        //console.log("This is avatar link: ", avatar);
-      })
-      .catch((error) => console.error(error));
-  };
+  // const getUsersPosts = () => {
+  //   axios
+  //     .get(
+  //       // besides the general API keys the content_type user is required with the value of the state variable name to find the unique user.
+  //       `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=user&fields.name=${name}`
+  //     )
+  //     .then((res) => {
+  //       //the response is the unique user. Check it in the console.
+  //       console.log(res);
+  //       console.log(res.data.items[0].fields.name);
+  //       // here the unique avatar-url of the user will be set. Will be reused in the view to show the users Profile pic.
+  //       setAvatar(res.data.items[0].fields.avatarLink);
+  //       // here the unique userId is set which will be reused to find his specific posts
+  //       setUserId(res.data.items[0].sys.id);
+  //       //Although the variable avatar can be displayed in the HTML, here it is still not reset. What is the reason?
+  //       //console.log("This is avatar link: ", avatar);
+  //     })
+  //     .catch((error) => console.error(error));
+  // };
 
   const getUserPosts2 = () => {
     axios
@@ -55,7 +56,17 @@ export default function ViewUser() {
       });
   };
 
-  useEffect(() => getUsersPosts(), []);
+  useEffect(() => {
+    ApiHelpers.user
+      .getUser(name)
+      .then((response) => {
+        console.log(response);
+        setAvatar(response.data.items[0].fields.avatarLink);
+        setUserId(response.data.items[0].sys.id);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
   useEffect(() => getUserPosts2(), [userId]);
 
   const getAvgRating = () => {
