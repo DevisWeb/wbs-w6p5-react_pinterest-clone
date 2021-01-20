@@ -1,5 +1,5 @@
 .view-post {
-    margin: 2em auto;
+    margin: 2em auto 3em;
     /*border: 1px solid var(--accent1);*/
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -29,6 +29,9 @@
     font-size: 2em;
     font-weight: 400;
     margin: 0 0 0.5em;
+}
+.view-post-explore {
+    text-align: center;
 }
 @media only screen and (max-width: 720px) {
     .view-post-image {
