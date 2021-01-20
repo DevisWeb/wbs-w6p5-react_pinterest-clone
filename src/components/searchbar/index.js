@@ -13,8 +13,8 @@ function SearchBar() {
         className="searchbar-form"
         onSubmit={(ev) => {
           ev.preventDefault();
-
           value ? history.push("/search=" + value) : history.push("/");
+          setValue("");
         }}
         onReset={() => setValue("")}
       >

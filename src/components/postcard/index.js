@@ -9,8 +9,7 @@ import "./styles.css";
 
 export default function PostCard({ post }) {
   return (
-    <div className="post-card-container">
-      <Link to={`/posts/${post.sys.id}`}>
+      <Link className="post-card-container" to={`/posts/${post.sys.id}`}>
         <img
           className="post-card-image"
           src={post.fields.imageLink}
@@ -21,6 +20,5 @@ export default function PostCard({ post }) {
           <Rating rating={post.fields.rating} />
         </div>
       </Link>
-    </div>
   );
 }
