@@ -52,7 +52,7 @@ export default function ViewPost() {
         setPostData({ isLoading: false, data: null });
       }
     );
-  }, []);
+  }, [id]);
 
   //if the post state recieved data, request the user
   useEffect(() => {
@@ -79,36 +79,33 @@ export default function ViewPost() {
 
   return (
     <>
-        <div className="view-post">
-          {postData.isLoading ? (
-            <>loading...</>
-          ) : !postData.data ? (
-            <>nothing here</>
-          ) : (
-            <>
-              <img
-     
-                      className="view-post-image"
-            
-               src={postData.data.imageLink}
-            
+      <div className="view-post">
+        {postData.isLoading ? (
+          <>loading...</>
+        ) : !postData.data ? (
+          <>nothing here</>
+        ) : (
+          <>
+            <img
+              className="view-post-image"
+              src={postData.data.imageLink}
             ></img>
-              <div className="view-post-content">
-                <h2>{postData.data.title}</h2>
-                <p>{postData.data.description}</p>
-                <Rating rating={postData.data.rating}></Rating>
-                <hr></hr>
-                {userData.isLoading ? (
-                  <>loading...</>
-                ) : (
-                  <UserLink user={userData.data} />
-                )}
-              </div>
-            </>
-          )}
-        </div>
-        <h3 className="view-post-explore">Explore more</h3>
-        <PostGrid postsAll={postsAll} />
+            <div className="view-post-content">
+              <h2>{postData.data.title}</h2>
+              <p>{postData.data.description}</p>
+              <Rating rating={postData.data.rating}></Rating>
+              <hr></hr>
+              {userData.isLoading ? (
+                <>loading...</>
+              ) : (
+                <UserLink user={userData.data} />
+              )}
+            </div>
+          </>
+        )}
+      </div>
+      <h3 className="view-post-explore">Explore more</h3>
+      <PostGrid postsAll={postsAll} />
     </>
   );
 }
