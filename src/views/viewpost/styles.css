@@ -1,25 +1,26 @@
 .view-post {
-    margin: 2em 0;
-    border: 1px solid var(--accent1);
+    margin: 2em auto;
+    /*border: 1px solid var(--accent1);*/
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     border-radius: 1em;
     display: flex;
+    max-width: 1060px;
 }
 .view-post-image {
+    border-radius: inherit;
     flex-shrink: 0;
-    flex-grow: 1;
-    object-fit: cover;
-    max-height: 80vh;
+    height: 80vh;
 }
 .view-post-content {
     padding: 3em;
     overflow: hidden;
-    max-width: 50%;
+    flex: 1 0 30%;
 }
 .view-post hr {
     margin:2em 0;
     border:unset;
-    border-top: 1px solid var(--accent1);
+    border-top: 1px solid var(--accent1)
 }
 .view-post h2 {
     font-family: var(--font-display);
