@@ -1,13 +1,17 @@
 .view-user-flex {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 6em;
-  margin-bottom: 7em;
+}
+
+.view-user-info {
+  width: 13em;
 }
 
 .view-user-avatar {
-  width: 200px;
+  width: 13em;
   height: auto;
   border-radius: 50%;
   border: 1px solid var(--accent1);
@@ -20,4 +24,11 @@
 .view-user-line {
   border-bottom: 1px solid var(--accent1);
   margin-top: 4em;
+  margin-bottom: 7em;
+}
+
+h3 {
+  margin-block-start: 3em;
+  margin-block-end: 0em;
+  text-align: center;
 }
