@@ -1,7 +1,10 @@
 .post-card-container {
   position: relative;
-  text-align: center;
   color: white;
+}
+
+.post-card-container p {
+  width: 65%;
 }
 
 .post-card-container:hover > a > div {
@@ -13,6 +16,10 @@
   bottom: 8px;
   left: 16px;
   opacity: 0;
+}
+
+.post-card-text p {
+  margin-left: 7px;
 }
 
 .post-card-image {
