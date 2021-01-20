@@ -7,7 +7,7 @@ export default function TopBar() {
       <div className="topbar">
         <div className="topbar-content container">
           <Link className="logo" to="/">
-            <img src="images/logo.svg"></img>
+            <img src="/images/logo.svg"></img>
           </Link>
           <NavLink className="link" activeClassName="active" to="/best_rated">
             top rated
