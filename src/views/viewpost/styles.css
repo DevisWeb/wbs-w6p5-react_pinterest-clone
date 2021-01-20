@@ -1,15 +1,29 @@
 .view-post {
     margin: 2em 0;
-    border: 1px solid black;
+    border: 1px solid var(--accent1);
     overflow: hidden;
     border-radius: 1em;
     display: flex;
 }
+.view-post-image {
+    flex-shrink: 0;
+    flex-grow: 1;
+    object-fit: cover;
+    max-height: 80vh;
+}
 .view-post-content {
     padding: 3em;
     overflow: hidden;
+    max-width: 50%;
 }
 .view-post hr {
+    margin:2em 0;
     border:unset;
-    border-top: 1px solid black;
+    border-top: 1px solid var(--accent1);
+}
+.view-post h2 {
+    font-family: var(--font-display);
+    font-size: 2em;
+    font-weight: 400;
+    margin-bottom: 0.5em;
 }
