@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PostGrid from "../../components/postgrid";
+import "./styles.css";
+import Pluralize from "pluralize";
 
 export default function ViewUser() {
   // name the username that will be passed as a prop. Set by default on "Pikachu" for testing
@@ -56,12 +58,31 @@ export default function ViewUser() {
   useEffect(() => getUsersPosts(), []);
   useEffect(() => getUserPosts2(), [userId]);
 
+  const getAvgRating = () => {
+    const numOfPosts = userPosts.length;
+    const allRatings = userPosts.map((post) => post.fields.rating);
+    return (
+      // filter out undefined, sum up available ratings devided by total number of posts per user
+      allRatings.filter(Number).reduce((acc, el) => acc + el, 0) / numOfPosts
+    );
+  };
+
+  getAvgRating();
   return (
     <div>
-      <img src={avatar} alt={name} />
-      <p>{name}</p>
+      <div className="view-user-flex">
+        <div className="view-user-info">
+          <img className="view-user-avatar" src={avatar} alt={name} />
+          <h2 className="view-user-center">{name}</h2>
+          <p className="view-user-center">
+            {Pluralize("post", userPosts.length, true)}
+          </p>
+          <p className="view-user-center">Avg rating: {getAvgRating()}</p>
+          <div className="view-user-line"></div>
+        </div>
+        <h3>More from {name}</h3>
+      </div>
       <PostGrid postsAll={userPosts} />
-      <div></div>
     </div>
   );
 }
