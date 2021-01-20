@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PostGrid from "../../components/postgrid";
+import "./styles.css";
+import Pluralize from "pluralize";
 
 export default function ViewUser() {
   // name the username that will be passed as a prop. Set by default on "Pikachu" for testing
@@ -58,10 +60,17 @@ export default function ViewUser() {
 
   return (
     <div>
-      <img src={avatar} alt={name} />
-      <p>{name}</p>
+      <div className="view-user-flex">
+        <div className="view-user-info">
+          <img className="view-user-avatar" src={avatar} alt={name} />
+          <h2 className="view-user-center">{name}</h2>
+          <p className="view-user-center">
+            {Pluralize("post", userPosts.length, true)}
+          </p>
+          <div className="view-user-line"></div>
+        </div>
+      </div>
       <PostGrid postsAll={userPosts} />
-      <div></div>
     </div>
   );
 }

@@ -1,0 +1,23 @@
+.view-user-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6em;
+  margin-bottom: 7em;
+}
+
+.view-user-avatar {
+  width: 200px;
+  height: auto;
+  border-radius: 50%;
+  border: 1px solid var(--accent1);
+}
+
+.view-user-center {
+  text-align: center;
+}
+
+.view-user-line {
+  border-bottom: 1px solid var(--accent1);
+  margin-top: 4em;
+}

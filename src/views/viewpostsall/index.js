@@ -33,17 +33,17 @@ export default function ViewPostsAll() {
     callApi(findEndpoint());
   }, [search]);
 
-  const countPosts = () => {
+  const countPosts = (keyword) => {
     if (postsAll.length === 0) {
-      return `No results for ${search}`;
-    } else if (search !== undefined) {
-      return `${Pluralize("result", postsAll.length, true)} for ${search}`;
+      return `No results for ${keyword}`;
+    } else if (keyword !== undefined) {
+      return `${Pluralize("result", postsAll.length, true)} for ${keyword}`;
     }
   };
   return (
     <div>
       <h3 style={{ marginBlockEnd: "-1em", marginBlockStart: "2.5em" }}>
-        {countPosts()}
+        {countPosts(search)}
       </h3>
       <PostGrid postsAll={postsAll} />
     </div>
