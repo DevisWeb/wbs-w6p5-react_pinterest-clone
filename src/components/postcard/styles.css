@@ -1,10 +1,25 @@
 .post-card-container {
   position: relative;
+  text-align: left;
   color: white;
 }
 
-.post-card-container p {
-  width: 65%;
+.post-card-container:after {
+  content: "\A";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  border-radius: 5px;
+}
+
+.post-card-container:hover:after {
+  opacity: 1;
 }
 
 .post-card-container:hover > a > div {
@@ -16,6 +31,12 @@
   bottom: 8px;
   left: 16px;
   opacity: 0;
+  z-index: 5;
+}
+
+.post-card-text p {
+  width: 90%;
+  font-weight: bold;
 }
 
 .post-card-text p {
