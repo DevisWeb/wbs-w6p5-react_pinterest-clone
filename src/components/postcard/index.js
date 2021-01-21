@@ -16,7 +16,7 @@ export default function PostCard({ post }) {
           alt={post.fields.title}
         />
         <div className="post-card-text">
-          <p>{post.fields.title}</p>
+          <h3>{post.fields.title}</h3>
           <Rating rating={post.fields.rating} />
         </div>
       </Link>

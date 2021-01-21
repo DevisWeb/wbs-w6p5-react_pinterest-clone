@@ -3,6 +3,7 @@
   position: relative;
   color: white;
   border-radius: 1em;
+  overflow: hidden;
 }
 
 .post-card-container:after {
@@ -34,15 +35,13 @@
   left: 16px;
   opacity: 0;
   z-index: 5;
-}
-
-.post-card-text p {
   width: 90%;
-  font-weight: bold;
 }
 
-.post-card-text p {
+.post-card-text h3 {
   margin-left: 7px;
+  color: var(--accent2);
+  letter-spacing: 0.05em;
 }
 
 .post-card-image {
