@@ -10,8 +10,8 @@ export default function PostGrid({ postsAll }) {
   const breakpointColumnsObj = {
     default: 4,
     1000: 3,
-    500: 2,
-    350: 1,
+    800: 2,
+    600: 1,
   };
   return (
     <div className="post-grid-stack">
