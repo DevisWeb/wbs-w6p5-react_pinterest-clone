@@ -3,9 +3,11 @@ import { useMemo } from "react";
 import StarSvg from "./starsvg";
 
 export default function StarIconFilled({ index, rate }) {
-  // https://dev.to/devcord/react-hooks-useeffect-usecallback-usememo-3o42
-  const fill = useMemo(() => {
-    return rate >= index ? "orange" : "rgb(17,17,17)";
-  }, [rate, index]);
-  return <StarSvg fill={fill} />;
+  return (
+    <StarSvg
+      //fill={rate >= index ? "orange" : "rgba(255,255,255, 0.5)"}
+      //fill={rate >= index ? "orange" : "rgb(17,17,17)"}
+      fill={rate >= index ? "orange" : "none"}
+    />
+  );
 }
