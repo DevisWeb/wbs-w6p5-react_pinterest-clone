@@ -1,22 +1,24 @@
 .user-link {
-  text-align: center;
   display: flex;
-  margin-top: 20px;
+  margin-top: 1em;
   align-items: center;
-  font-weight: bold;
-  font-size: 0.75rem;
   text-align: left;
 }
 
-.user-link p {
-  font-weight: normal;
-  font-size: 0.5rem;
+.user-link h3, .user-link p {
+  margin:0;
+}
+
+.user-link h3 {
+  font-size:1.5em;
+  margin-bottom:0.5em;
 }
 
 .img-user-link {
-  width: 10vw;
+  width: 9em;
   height: auto;
   align-self: center;
   border-radius: 50%;
-  margin-right: 20px;
+  border: 1px solid var(--accent1);
+  margin-right: 2em;
 }
