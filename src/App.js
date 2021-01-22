@@ -23,7 +23,7 @@ function App() {
       <TopBar />
       <div className="container">
         <Switch>
-          <Route path="/users/:id">
+          <Route path="/users/:name">
             <ViewUser />
           </Route>
           <Route path="/posts/:id">
