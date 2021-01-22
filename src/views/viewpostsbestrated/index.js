@@ -19,25 +19,21 @@ export default function ViewPostsBestRated() {
   // Events
   const getValue = (e) => {
     setInput(e.target.value);
-    console.log(e.target.value);
   };
 
   return (
     <Fragment>
       <div className="vp-byrating-wrapper">
-        <h3 class="uppercase">Top rated posts</h3>
+        <h3 className="uppercase">Top rated posts</h3>
         <div className="vp-byrating-section flex">
           <label htmlFor="rating">Show all posts rated with:</label>
           <select
             className="cursor-pointer vp-byrating-select"
             onChange={getValue}
-            onMouseLeave={input}
             name="rating"
             id="rating"
           >
-            <option value="5" selected>
-              5
-            </option>
+            <option value="5">5</option>
             <option value="4">4</option>
             <option value="3">3</option>
             <option value="2">2</option>

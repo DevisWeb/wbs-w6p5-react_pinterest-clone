@@ -1,5 +1,4 @@
 import "./style.css";
-import { useMemo } from "react";
 import StarSvg from "./starsvg";
 
 export default function StarIconFilled({ index, rate }) {
