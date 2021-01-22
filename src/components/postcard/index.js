@@ -9,18 +9,16 @@ import "./styles.css";
 
 export default function PostCard({ post }) {
   return (
-    <div className="post-card-container">
-      <Link to={`/posts/${post.sys.id}`}>
+      <Link className="post-card-container" to={`/posts/${post.sys.id}`}>
         <img
           className="post-card-image"
           src={post.fields.imageLink}
           alt={post.fields.title}
         />
         <div className="post-card-text">
-          <p>{post.fields.title}</p>
+          <h3>{post.fields.title}</h3>
           <Rating rating={post.fields.rating} />
         </div>
       </Link>
-    </div>
   );
 }

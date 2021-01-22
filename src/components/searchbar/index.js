@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Link, useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./styles.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 function SearchBar() {
   const [value, setValue] = useState("");
@@ -11,8 +13,8 @@ function SearchBar() {
         className="searchbar-form"
         onSubmit={(ev) => {
           ev.preventDefault();
-
           value ? history.push("/search=" + value) : history.push("/");
+          setValue("");
         }}
         onReset={() => setValue("")}
       >
@@ -24,11 +26,11 @@ function SearchBar() {
         ></input>
         {value ? (
           <button className="searchbar-reset" type="reset">
-            reset
+            <FontAwesomeIcon icon={faTimes} />
           </button>
         ) : null}
         <button className="searchbar-search" type="submit">
-          Search
+          <FontAwesomeIcon icon={faSearch} />
         </button>
       </form>
     </div>

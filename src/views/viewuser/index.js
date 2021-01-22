@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 import PostGrid from "../../components/postgrid";
+import "./styles.css";
+import Pluralize from "pluralize";
+import Api from "../../api";
 
 export default function ViewUser() {
   // name the username that will be passed as a prop. Set by default on "Pikachu" for testing
-  let { id } = useParams();
-  const name = id;
+  let { name } = useParams();
   // the state variable for the avatarLink used as the profile pic of the user
   const [avatar, setAvatar] = useState();
   // the state variable of the userId will be used to get the posts of the specific user. Used in the second axios request.
@@ -14,54 +16,47 @@ export default function ViewUser() {
   // userPosts will be set to an array with all the posts of the specific user. Will be set in the second axios request.
   const [userPosts, setUserPosts] = useState([]);
 
-  const getUsersPosts = () => {
-    axios
-      .get(
-        // besides the general API keys the content_type user is required with the value of the state variable name to find the unique user.
-        `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=user&fields.name=${name}`
-      )
-      .then((res) => {
-        //the response is the unique user. Check it in the console.
-        console.log(res);
-        console.log(res.data.items[0].fields.name);
-        // here the unique avatar-url of the user will be set. Will be reused in the view to show the users Profile pic.
-        setAvatar(res.data.items[0].fields.avatarLink);
-        // here the unique userId is set which will be reused to find his specific posts
-        setUserId(res.data.items[0].sys.id);
-        //Although the variable avatar can be displayed in the HTML, here it is still not reset. What is the reason?
-        //console.log("This is avatar link: ", avatar);
+  useEffect(() => {
+    Api.user
+      .getByName(name)
+      .then((response) => {
+        setAvatar(response.data.items[0].fields.avatarLink);
+        setUserId(response.data.items[0].sys.id);
       })
       .catch((error) => console.error(error));
-  };
+  }, [name]);
 
-  const getUserPosts2 = () => {
-    axios
-      .get(
-        //ISSUE TO BE FIXED: This request gets all the posts of the user, but it still doesn't can take the variable userId somehow. For testing the Id of Pikachu is used.
-        `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=post&fields.user.sys.id=${userId}`
-      )
-      .then((res) => {
-        // Setting the variable userPosts equal the request which has all the posts of this user.
-        setUserPosts(res.data.items);
-        // here you can check that all user's post are in the response.
-        //console.log("All user's posts", res.data.items);
-        // ISSUE TO BE FIXED: somehow the variable userPosts is here not set already. Check it in the console.
-        //But it works in the HTML.
-        //console.log("UserPosts =", userPosts);
-        //Another testing of the response.
-        // console.log(res.data.items[0].fields.title);
-      });
-  };
+  useEffect(() => {
+    Api.post
+      .getByUser(userId)
+      .then((response) => setUserPosts(response.data.items))
+      .catch((error) => console.error(error));
+  }, [userId]);
 
-  useEffect(() => getUsersPosts(), []);
-  useEffect(() => getUserPosts2(), [userId]);
+  const getAvgRating = () => {
+    const numOfPosts = userPosts.length;
+    const allRatings = userPosts.map((post) => post.fields.rating);
+    return (
+      // filter out undefined, sum up available ratings devided by total number of posts per user
+      allRatings.filter(Number).reduce((acc, el) => acc + el, 0) / numOfPosts
+    );
+  };
 
   return (
     <div>
-      <img src={avatar} alt={name} />
-      <p>{name}</p>
+      <div className="view-user-flex">
+        <div className="view-user-info">
+          <img className="view-user-avatar" src={avatar} alt={name} />
+          <h2 className="view-user-center">{name}</h2>
+          <p className="view-user-center">
+            {Pluralize("post", userPosts.length, true)}
+          </p>
+          <p className="view-user-center">Avg rating: {getAvgRating()}</p>
+          <div className="view-user-line"></div>
+        </div>
+        <h3>More from {name}</h3>
+      </div>
       <PostGrid postsAll={userPosts} />
-      <div></div>
     </div>
   );
 }

@@ -6,8 +6,8 @@ export default function TopBar() {
     return (
       <div className="topbar">
         <div className="topbar-content container">
-          <Link className="link" to="/">
-            LOGO
+          <Link className="logo" to="/">
+            <img src="/images/logo.svg"></img>
           </Link>
           <NavLink className="link" activeClassName="active" to="/best_rated">
             top rated
@@ -15,5 +15,5 @@ export default function TopBar() {
           <SearchBar></SearchBar>
         </div>
       </div>
-    )
+    );
 }

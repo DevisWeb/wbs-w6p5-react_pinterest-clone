@@ -1,7 +1,8 @@
 // Import style
 import "./App.css";
 // Import react modules
-import { Switch, Route, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Switch, Route, Link, useLocation } from "react-router-dom";
 // Import views
 import ViewPost from "./views/viewpost";
 import ViewPostsAll from "./views/viewpostsall";
@@ -11,12 +12,18 @@ import ViewUser from "./views/viewuser";
 import TopBar from "./components/topbar";
 
 function App() {
+  //make App scroll to top on navigation
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <div className="App">
       <TopBar />
       <div className="container">
         <Switch>
-          <Route path="/users/:id">
+          <Route path="/users/:name">
             <ViewUser />
           </Route>
           <Route path="/posts/:id">
