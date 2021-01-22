@@ -1,37 +1,22 @@
 import { useEffect, useState } from "react";
 import { Fragment } from "react";
-import axios from "axios";
 import PostGrid from "../../components/postgrid/";
+import Api from "../../api/";
 
 export default function ViewPostsBestRated() {
   const [ratedPosts, setRatedPosts] = useState([]);
   const [input, setInput] = useState("");
-  const query = `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=post&fields.rating`;
 
   useEffect(() => {
-    axios
-      .get(
-        `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=post&fields.rating=5`
-      )
-      .then((data) => {
-        setRatedPosts(data.data.items); //console.log(data.data.items[0].fields.user.sys.id);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    Api.post
+      .getByRating(input)
+      .then((response) => setRatedPosts(response.data.items))
+      .catch((error) => console.error(error));
+  }, [input]);
 
   // Event
   const searchValue = (e) => {
     setInput(e.target.value); //console.log(e.target.value);
-  };
-
-  const getPostsByRating = (e) => {
-    e.preventDefault();
-    axios
-      .get(`${query}=${input}`)
-      .then((data) => {
-        setRatedPosts(data.data.items);
-      })
-      .catch((err) => console.log(err));
   };
 
   return (
@@ -47,7 +32,7 @@ export default function ViewPostsBestRated() {
           <option value="1">1 *</option>
         </select>
         {/* <input onChange={searchValue} type="text" /> */}
-        <button onClick={getPostsByRating}>Search</button>
+        <button onClick={searchValue}>Search</button>
       </p>
       <PostGrid postsAll={ratedPosts} />
     </Fragment>
