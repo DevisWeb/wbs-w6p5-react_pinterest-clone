@@ -39,8 +39,6 @@ export default function ViewPost() {
   return (
     <>
       <div className="view-post">
-        {console.log(userData)}
-        {console.log(postData)}
         {postData.isLoading ? (
           <>loading...</>
         ) : !postData ? (
