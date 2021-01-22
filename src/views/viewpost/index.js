@@ -6,8 +6,9 @@ import PostGrid from "../../components/postgrid/";
 import UserLink from "../../components/userlink";
 import Rating from "../../components/rating";
 
-import axios from "axios";
 import "./styles.css";
+
+import Api from "../../api/";
 
 export default function ViewPost() {
   const { id } = useParams();
@@ -15,91 +16,46 @@ export default function ViewPost() {
   const [userData, setUserData] = useState({ isLoading: true, data: null });
   const [postsAll, setPostsAll] = useState([]);
 
-  //request a post from server and then execute the callback with it as argument
-  const requestPostById = (id, onSuccess, onError) => {
-    axios
-      .get(
-        `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=post&sys.id=${id}`
-      )
-      .then((response) => {
-        console.log(response);
-        onSuccess(response.data.items[0].fields);
-      })
-      .catch(onError);
-  };
-
-  //request a user from server and then execute the callback with it as argument
-  const requestUserById = (id, onSuccess, onError) => {
-    axios
-      .get(
-        `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=user&sys.id=${id}`
-      )
-      .then((response) => {
-        onSuccess(response.data.items[0].fields);
-      })
-      .catch(onError);
-  };
-
-  //request the post
   useEffect(() => {
-    setPostData({ isLoading: true, data: null });
-    requestPostById(
-      id,
-      (post) => {
-        setPostData({ isLoading: false, data: post });
-      },
-      () => {
-        setPostData({ isLoading: false, data: null });
-      }
-    );
-  }, [id]);
-
-  //if the post state recieved data, request the user
-  useEffect(() => {
-    if (postData.data) {
-      setUserData({ isLoading: true, data: null });
-      requestUserById(
-        postData.data.user.sys.id,
-        (user) => setUserData({ isLoading: false, data: user }),
-        () => setUserData({ isLoading: false, data: null })
-      );
-    }
-  }, [postData.data]);
-
-  useEffect(() => {
-    axios
-      .get(
-        `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=post`
-      )
-      .then((response) => {
-        setPostsAll(response.data.items);
-      })
+    const getData = async () => {
+      // Get post by id
+      const postResponse = await Api.post.getById(id);
+      const parsedResponse = postResponse.data.items[0].fields;
+      // Wait for post and get user
+      const userResponse = await Api.user.getById(parsedResponse.user.sys.id);
+      const parsedUserResponse = userResponse.data.items[0].fields;
+      // Set state
+      setPostData(parsedResponse);
+      setUserData(parsedUserResponse);
+    };
+    getData();
+    // Get all posts
+    Api.post
+      .getAll()
+      .then((response) => setPostsAll(response.data.items))
       .catch((error) => console.error(error));
-  }, []);
+  }, [id]);
 
   return (
     <>
       <div className="view-post">
         {postData.isLoading ? (
           <>loading...</>
-        ) : !postData.data ? (
+        ) : !postData ? (
           <>nothing here</>
         ) : (
           <>
             <img
               className="view-post-image"
-              src={postData.data.imageLink}
+              src={postData.imageLink}
+              alt={userData.name}
             ></img>
             <div className="view-post-content">
-              <h2>{postData.data.title}</h2>
-              <p>{postData.data.description}</p>
-              <Rating rating={postData.data.rating}></Rating>
+              <h2>{postData.title}</h2>
+              <p>{postData.description}</p>
+              <Rating rating={postData.rating}></Rating>
               <hr></hr>
-              {userData.isLoading ? (
-                <>loading...</>
-              ) : (
-                <UserLink user={userData.data} />
-              )}
+              {<UserLink user={userData} />}
             </div>
           </>
         )}
