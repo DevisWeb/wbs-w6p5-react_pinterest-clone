@@ -15,7 +15,6 @@
   margin: 2em 0 3em;
   overflow: hidden;
   border-radius: 1em;
-  text-align: center;
 }
 
 .vp-byrating-wrapper .rating-container {
@@ -24,7 +23,7 @@
 
 .vp-byrating-section {
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 1.5em 0em 1em;
 }
 

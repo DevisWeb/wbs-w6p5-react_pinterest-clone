@@ -17,11 +17,6 @@ export default function ViewPostsBestRated() {
   }, [input]);
 
   // Events
-
-  const onMouseEnter = (e) => {
-    console.log(e.target.value);
-  };
-
   const getValue = (e) => {
     setInput(e.target.value);
     console.log(e.target.value);
@@ -35,9 +30,8 @@ export default function ViewPostsBestRated() {
           <label htmlFor="rating">Show all posts rated with:</label>
           <select
             className="cursor-pointer vp-byrating-select"
-            onMouseEnter={onMouseEnter}
             onChange={getValue}
-            onMouseLeave={getPostsByRating}
+            onMouseLeave={input}
             name="rating"
             id="rating"
           >
