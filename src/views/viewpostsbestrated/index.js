@@ -1,11 +1,13 @@
+import "./styles.css";
 import { useEffect, useState } from "react";
 import { Fragment } from "react";
 import PostGrid from "../../components/postgrid/";
+import Rating from "../../components/rating/";
 import Api from "../../api/";
 
 export default function ViewPostsBestRated() {
   const [ratedPosts, setRatedPosts] = useState([]);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState("5");
 
   useEffect(() => {
     Api.post
@@ -14,26 +16,36 @@ export default function ViewPostsBestRated() {
       .catch((error) => console.error(error));
   }, [input]);
 
-  // Event
-  const searchValue = (e) => {
-    setInput(e.target.value); //console.log(e.target.value);
+  // Events
+  const getValue = (e) => {
+    setInput(e.target.value);
+    console.log(e.target.value);
   };
 
   return (
     <Fragment>
-      <h3>Filter Posts by rating *****</h3>
-      <p>
-        <label htmlFor="rating">Show all posts rated with: </label>
-        <select onChange={searchValue} name="rating" id="rating">
-          <option value="5">5 *****</option>
-          <option value="4">4 ****</option>
-          <option value="3">3 ***</option>
-          <option value="2">2 **</option>
-          <option value="1">1 *</option>
-        </select>
-        {/* <input onChange={searchValue} type="text" /> */}
-        <button onClick={searchValue}>Search</button>
-      </p>
+      <div className="vp-byrating-wrapper">
+        <h3 class="uppercase">Top rated posts</h3>
+        <div className="vp-byrating-section flex">
+          <label htmlFor="rating">Show all posts rated with:</label>
+          <select
+            className="cursor-pointer vp-byrating-select"
+            onChange={getValue}
+            onMouseLeave={input}
+            name="rating"
+            id="rating"
+          >
+            <option value="5" selected>
+              5
+            </option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+          </select>
+          <Rating className="starhover" rating={input} />
+        </div>
+      </div>
       <PostGrid postsAll={ratedPosts} />
     </Fragment>
   );
