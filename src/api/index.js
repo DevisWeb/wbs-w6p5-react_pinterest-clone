@@ -1,18 +1,21 @@
 import axios from "axios";
 
-const baseUrl = `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}`;
+const urlPost = `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=post`;
+const urlUser = `${process.env.REACT_APP_API_ENDPOINT}?access_token=${process.env.REACT_APP_API_KEY}&content_type=user`;
 
-const ApiHelpers = {
-  posts: {
-    getSearchResults: ({ search }) =>
-      axios.get(`${baseUrl}&content_type=post&query=${search}`),
-    getAll: () => axios.get(`${baseUrl}&content_type=post`),
-    getById: ({ id }) => axios.get(`${baseUrl}&content_type=post&sys.id=${id}`),
+const Api = {
+  post: {
+    getSearchResults: (search) => axios.get(`${urlPost}&query=${search}`),
+    getAll: () => axios.get(`${urlPost}`),
+    getById: (id) => axios.get(`${urlPost}&sys.id=${id}`),
+    getByUser: (userId) => axios.get(`${urlPost}&fields.user.sys.id=${userId}`),
+    getByRating: (ratingInt) =>
+      axios.get(`${urlPost}&fields.rating=${ratingInt}`),
   },
   user: {
-    getUser: ({ name }) =>
-      axios.get(`${baseUrl}&content_type=user&fields.name=${name}`),
+    getByName: (name) => axios.get(`${urlUser}&fields.name=${name}`),
+    getById: (id) => axios.get(`${urlUser}&sys.id=${id}`),
   },
 };
 
-export default ApiHelpers;
+export default Api;
