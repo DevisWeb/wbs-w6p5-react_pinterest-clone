@@ -9,6 +9,7 @@ const Api = {
     getAll: () => axios.get(`${urlPost}`),
     getById: (id) => axios.get(`${urlPost}&sys.id=${id}`),
     getByUser: (userId) => axios.get(`${urlPost}&fields.user.sys.id=${userId}`),
+    getByOrder: () => axios.get(`${urlPost}&order=-fields.rating`),
     getByRating: (ratingInt) =>
       axios.get(`${urlPost}&fields.rating=${ratingInt}`),
   },

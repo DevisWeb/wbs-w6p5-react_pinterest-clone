@@ -5,7 +5,7 @@ import PostCard from "../postcard/";
 import "./styles.css";
 import Masonry from "react-masonry-css";
 
-export default function PostGrid({ postsAll }) {
+export default function PostGrid({ postsAll, order }) {
   // Set breakpoints
   const breakpointColumnsObj = {
     default: 4,
@@ -13,6 +13,9 @@ export default function PostGrid({ postsAll }) {
     800: 2,
     600: 1,
   };
+  if (order !== "orderAllDescend") {
+    postsAll.sort(() => Math.random() - 0.5);
+  }
   return (
     <div className="post-grid-stack">
       <Masonry
@@ -20,12 +23,9 @@ export default function PostGrid({ postsAll }) {
         className="post-grid-masonry"
         columnClassName="post-grid-column"
       >
-        {postsAll
-          // Shuffle array before iteration
-          .sort(() => Math.random() - 0.5)
-          .map((post, index) => {
-            return <PostCard key={index} post={post} />;
-          })}
+        {postsAll.map((post, index) => {
+          return <PostCard key={index} post={post} />;
+        })}
       </Masonry>
     </div>
   );
