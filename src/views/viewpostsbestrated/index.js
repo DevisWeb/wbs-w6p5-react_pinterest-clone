@@ -12,7 +12,8 @@ export default function ViewPostsBestRated() {
   useEffect(() => {
     if (input === "orderAllDescend") {
       Api.post
-        .getByOrder()
+        .getByOrder() // get all rated posts in descending order
+        // .getByOrderRatingFiveFour() // get posts rated 5 and 4 in descending order
         .then((response) => {
           setRatedPosts(response.data.items);
           // console.log(response.data.items);
