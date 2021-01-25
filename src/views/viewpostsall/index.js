@@ -28,7 +28,7 @@ export default function ViewPostsAll() {
   }, [search]);
 
   const countPosts = (keyword) => {
-    if (postsAll.length === 0) {
+    if (postsAll.length === 0 && keyword !== undefined) {
       return `No results for ${keyword}`;
     } else if (keyword !== undefined) {
       return `${Pluralize("result", postsAll.length, true)} for ${keyword}`;
