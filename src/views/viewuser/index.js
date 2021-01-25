@@ -36,10 +36,11 @@ export default function ViewUser() {
   const getAvgRating = () => {
     const numOfPosts = userPosts.length;
     const allRatings = userPosts.map((post) => post.fields.rating);
-    return (
-      // filter out undefined, sum up available ratings devided by total number of posts per user
-      allRatings.filter(Number).reduce((acc, el) => acc + el, 0) / numOfPosts
-    );
+    // filter out undefined, sum up available ratings devided by total number of posts per user
+    const avgRating =
+      allRatings.filter(Number).reduce((acc, el) => acc + el, 0) / numOfPosts;
+    // round to 0.5 steps
+    return (Math.round(avgRating * 2) / 2).toFixed(1);
   };
 
   return (

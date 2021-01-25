@@ -24,18 +24,14 @@
 .vp-byrating-section {
   align-items: center;
   justify-content: flex-start;
-  margin-top: 1.5em 0em 1em;
 }
 
 .vp-byrating-select {
   /* replace default styles arrow */
   border: 0;
-  /* -moz-appearance: none; */
   -webkit-appearance: none;
   appearance: none;
-  /* display: none; */
   /* select menu - add custom styling */
-  position: relative;
   font-family: sans-serif;
   outline: none;
   margin-left: 15px;
@@ -56,11 +52,6 @@
   background-color: #ccc;
   color: var(--accent1);
   background-color: var(--accent2);
-  /* -moz-padding-start: calc(10px - 3px); */
-}
-
-.vp-byrating-select::-ms-expand {
-  display: none;
 }
 
 .vp-byrating-select:focus,
