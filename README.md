@@ -15,8 +15,8 @@ WBS Coding School - Team-Project 5 (week 6-7)
 ### Table of Contents
 
 - [Project Overview](#project-overview)
-- [Requirements & Installation](#requirements-&-installation)
-- [Technologies & Tools](#Technologies-&-Tools)
+- [Requirements & Installation](#requirements-and-installation)
+- [Technologies & Tools](#technologies-and-tools)
 - [Resources](#resources)
 
 ---
@@ -69,7 +69,7 @@ WBS Coding School - Team-Project 5 (week 6-7)
 
 For DEMO, go to: [Pinter-REST](https://wbs-pinterest-clone.herokuapp.com/)
 
-# Requirements & Installation
+# Requirements and Installation
 
 This project requires [Node.js](https://nodejs.org/en/) v14.x.x to be installed on your machine.
 To check your actual version, run:
@@ -91,7 +91,7 @@ $ npm start
 
 ---
 
-# Technologies & Tools
+# Technologies and Tools
 
 | Technologies / Tools          | Used               | Notes                                   |
 | :---------------------------- | :----------------- | :-------------------------------------- |
