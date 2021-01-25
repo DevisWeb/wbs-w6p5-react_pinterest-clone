@@ -10,10 +10,24 @@ export default function ViewPostsBestRated() {
   const [input, setInput] = useState("5");
 
   useEffect(() => {
-    Api.post
-      .getByRating(input)
-      .then((response) => setRatedPosts(response.data.items))
-      .catch((error) => console.error(error));
+    if (input === "orderAllDescend") {
+      Api.post
+        .getByOrder() // get all rated posts in descending order
+        // .getByOrderRatingFiveFour() // get posts rated 5 and 4 in descending order
+        .then((response) => {
+          setRatedPosts(response.data.items);
+          // console.log(response.data.items);
+        })
+        .catch((error) => console.error(error));
+    } else {
+      Api.post
+        .getByRating(input)
+        .then((response) => {
+          setRatedPosts(response.data.items);
+          // console.log(response.data.items);
+        })
+        .catch((error) => console.error(error));
+    }
   }, [input]);
 
   // Events
@@ -26,7 +40,7 @@ export default function ViewPostsBestRated() {
       <div className="vp-byrating-wrapper">
         <h3 className="uppercase">Top rated posts</h3>
         <div className="vp-byrating-section flex">
-          <label htmlFor="rating">Show all posts rated with:</label>
+          <label htmlFor="rating">Show posts rated:</label>
           <select
             className="cursor-pointer vp-byrating-select"
             onChange={getValue}
@@ -38,11 +52,12 @@ export default function ViewPostsBestRated() {
             <option value="3">3</option>
             <option value="2">2</option>
             <option value="1">1</option>
+            <option value="orderAllDescend">all</option>
           </select>
           <Rating className="starhover" rating={input} />
         </div>
       </div>
-      <PostGrid postsAll={ratedPosts} />
+      <PostGrid postsAll={ratedPosts} order={input} />
     </Fragment>
   );
 }
