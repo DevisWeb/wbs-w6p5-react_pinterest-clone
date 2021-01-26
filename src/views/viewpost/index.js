@@ -16,37 +16,36 @@ import Api from "../../api/";
 
 export default function ViewPost() {
   const { id } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [postData, setPostData] = useState(null);
-  const [userData, setUserData] = useState(null);
+  const [{ loading, postData, userData }, setViewData] = useState({
+    loading: true,
+    postData: null,
+    userData: null,
+  });
   const [postsAll, setPostsAll] = useState([]);
 
-  useEffect(async () => {
-    setLoading(true);
-    let parsedResponse = null;
-    let parsedUserResponse = null;
-    // Get post by id
-    try {
-      const postResponse = await Api.post.getById(id);
-      //check if a post was found
-      if (postResponse.data.items.length != 0)
-        parsedResponse = postResponse.data.items[0].fields;
-    } catch (error) {
-      console.error(error);
-    }
-    // Wait for post and get user
-    if (parsedResponse && parsedResponse.user.sys.id) {
+  useEffect(() => {
+    const requestData = async () => {
+      setViewData({  loading:  true, postData: postData, userData: userData });
+      let post = null;
+      let user = null;
       try {
-        const userResponse = await Api.user.getById(parsedResponse.user.sys.id);
-        parsedUserResponse = userResponse.data.items[0].fields;
+        //fetch the post
+        const postResponse = await Api.post.getById(id);
+        // continue if a post was found
+        if (postResponse.data.items.length !== 0) {
+          post = postResponse.data.items[0].fields;
+          //fetch the user, that the post is from
+          const userResponse = await Api.user.getById(post.user.sys.id);
+          user = userResponse.data.items[0].fields;
+        }
       } catch (error) {
         console.error(error);
       }
-    }
-    // Set state
-    setPostData(parsedResponse);
-    setUserData(parsedUserResponse);
-    setLoading(false);
+      console.log(post);
+      //set the states
+      setViewData({  loading:  false, postData: post, userData: user });
+    };
+    requestData();
   }, [id]);
 
   useEffect(() => {
