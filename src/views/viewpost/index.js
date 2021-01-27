@@ -16,37 +16,25 @@ import Api from "../../api/";
 
 export default function ViewPost() {
   const { id } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [postData, setPostData] = useState(null);
-  const [userData, setUserData] = useState(null);
+  const [{ loading, postData, userData }, setViewData] = useState({
+    loading: true,
+    postData: null,
+    userData: null,
+  });
   const [postsAll, setPostsAll] = useState([]);
 
-  useEffect(async () => {
-    setLoading(true);
-    let parsedResponse = null;
-    let parsedUserResponse = null;
-    // Get post by id
-    try {
-      const postResponse = await Api.post.getById(id);
-      //check if a post was found
-      if (postResponse.data.items.length != 0)
-        parsedResponse = postResponse.data.items[0].fields;
-    } catch (error) {
-      console.error(error);
-    }
-    // Wait for post and get user
-    if (parsedResponse && parsedResponse.user.sys.id) {
-      try {
-        const userResponse = await Api.user.getById(parsedResponse.user.sys.id);
-        parsedUserResponse = userResponse.data.items[0].fields;
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    // Set state
-    setPostData(parsedResponse);
-    setUserData(parsedUserResponse);
-    setLoading(false);
+  useEffect(() => {
+    const requestData = async () => {
+      //set loading to true, if it is not yet true
+      if (!loading) setViewData({ loading: true, postData: postData, userData: userData });
+      //fetch the post
+      const post = await Api.post.getById(id);
+      // fetch the user if a post was found
+      const user = (post ? await Api.user.getById(post.user.sys.id) : null);
+      //set the states
+      setViewData({ loading: false, postData: post, userData: user });
+    };
+    requestData();
   }, [id]);
 
   useEffect(() => {
