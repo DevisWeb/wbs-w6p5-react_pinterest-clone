@@ -25,25 +25,14 @@ export default function ViewPost() {
 
   useEffect(() => {
     const requestData = async () => {
-      setViewData({  loading:  true, postData: postData, userData: userData });
-      let post = null;
-      let user = null;
-      try {
-        //fetch the post
-        const postResponse = await Api.post.getById(id);
-        // continue if a post was found
-        if (postResponse.data.items.length !== 0) {
-          post = postResponse.data.items[0].fields;
-          //fetch the user, that the post is from
-          const userResponse = await Api.user.getById(post.user.sys.id);
-          user = userResponse.data.items[0].fields;
-        }
-      } catch (error) {
-        console.error(error);
-      }
-      console.log(post);
+      //set loading to true, if it is not yet true
+      if (!loading) setViewData({ loading: true, postData: postData, userData: userData });
+      //fetch the post
+      const post = await Api.post.getById(id);
+      // fetch the user if a post was found
+      const user = (post ? await Api.user.getById(post.user.sys.id) : null);
       //set the states
-      setViewData({  loading:  false, postData: post, userData: user });
+      setViewData({ loading: false, postData: post, userData: user });
     };
     requestData();
   }, [id]);
