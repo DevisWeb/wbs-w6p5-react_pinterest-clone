@@ -3,8 +3,7 @@
     top:0;
     z-index: 10;
     width: 100%;
-    height: 4em;
-    padding: 1em 0 0.5em 0;
+    padding-top: 1em;
     background-color: var(--background);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     transition: ease-in-out 0.1s;
@@ -20,12 +19,15 @@
 .topbar-content {
     height: 100%;
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     align-items: center;
+    flex-wrap: wrap;
 }
 .topbar-content > * {
-    height: 100%;
+    height: 2.5em;
     margin-right: 0.8em;
+    margin-bottom: 0.5em;
+
 }
 .topbar-content > *:last-child {
     margin-right: 0;
@@ -55,3 +57,8 @@
     color: var(--accent2);
     font-weight: 500;
 }
+@media only screen and (max-width: 720px) {
+    .logo {
+      width: 100%;
+    }
+  }
