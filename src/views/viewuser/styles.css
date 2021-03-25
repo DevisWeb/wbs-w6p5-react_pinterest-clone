@@ -12,7 +12,8 @@
 
 .view-user-avatar {
   width: 13em;
-  height: auto;
+  height: 13em;
+  object-fit: cover;
   border-radius: 50%;
   border: 1px solid var(--accent1);
 }

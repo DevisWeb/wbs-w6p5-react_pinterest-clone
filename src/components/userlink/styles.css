@@ -16,7 +16,8 @@
 
 .img-user-link {
   width: 9em;
-  height: auto;
+  height: 9em;
+  object-fit: cover;
   align-self: center;
   border-radius: 50%;
   border: 1px solid var(--accent1);
